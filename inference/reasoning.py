@@ -6,9 +6,10 @@ ontology = get_ontology('file://family.owl').load()
 Foaf = ontology.get_namespace('http://xmlns.com/foaf/0.1/')
 
 # Add individuals to the ontology
-joe = Foaf.Person('Joe')
-sue = Foaf.Person('Sue', age='7', hasFather=[joe])
-zoe = Foaf.Person('Zoe', hasDaughter=[sue])
+with ontology:
+    joe = Foaf.Person('Joe')
+    sue = Foaf.Person('Sue', age='7', hasFather=[joe])
+    zoe = Foaf.Person('Zoe', hasDaughter=[sue])
 
 # Compute and output additional triples
 sync_reasoner(ontology, infer_property_values=True)
