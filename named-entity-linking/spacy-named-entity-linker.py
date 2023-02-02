@@ -33,7 +33,9 @@ kb.to_disk('example.kb')
 
 # activate the entity linker
 example_text = 'Emerson anonymously published his first essay, "Nature", on September 9, 1836.'
-example = Example.from_dict(nlp.make_doc(example_text), {'links': {(0, 7): {'Q48226': 1.0}}})
+example = Example.from_dict(nlp.make_doc(example_text),
+                            {'links': {(0, 7): {'Q48226': 1.0}},
+                             'entities': [(0, 7, 'PERSON'])})
 entity_linker = nlp.add_pipe("entity_linker", config={"incl_prior": False}, last=True)
 entity_linker.initialize(get_examples=lambda: [example], kb_loader=lambda x: kb)
 

@@ -29,11 +29,11 @@ with Path.cwd() / 'raw/emerson_annotated_text.jsonl.txt' as f:
 # (we got 10 examples per qid and set 20% apart for testing)
 nlp = spacy.load("en_core_web_lg")
 
-train_dataset, test_dataset = [], []
 if 'sentencizer' not in nlp.pipe_names:
     nlp.add_pipe('sentencizer')
 sentencizer = nlp.get_pipe('sentencizer')
 
+train_dataset, test_dataset = [], []
 for no, example in enumerate(chain(*dataset.values())):
     if no < 8:
         text, annotation = example
@@ -73,4 +73,4 @@ doc = nlp(text)
 for ent in doc.ents:
     print(ent.text, ent.label_, ent.kb_id_)
 
-nlp.to_disk('nlp-model.spacy')
+entity_linker.to_disk('nlp-model.spacy')
