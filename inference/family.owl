@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://www.semanticlab.net/kee/family/"
+     xml:base="https://www.semanticlab.net/kee/family/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:family="https://www.semanticlab.net/kee/family/">
+    <owl:Ontology rdf:about="https://www.semanticlab.net/kee/family/"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/hasChild -->
+
+    <owl:ObjectProperty rdf:about="https://www.semanticlab.net/kee/family/hasChild">
+        <rdfs:subPropertyOf rdf:resource="https://www.semanticlab.net/kee/family/related"/>
+        <owl:inverseOf rdf:resource="https://www.semanticlab.net/kee/family/hasParent"/>
+        <rdfs:domain rdf:resource="https://www.semanticlab.net/kee/family/Parent"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Child"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/hasDaughter -->
+
+    <owl:ObjectProperty rdf:about="https://www.semanticlab.net/kee/family/hasDaughter">
+        <rdfs:subPropertyOf rdf:resource="https://www.semanticlab.net/kee/family/hasChild"/>
+        <rdfs:domain rdf:resource="https://www.semanticlab.net/kee/family/Parent"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Child"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Female"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/hasFather -->
+
+    <owl:ObjectProperty rdf:about="https://www.semanticlab.net/kee/family/hasFather">
+        <rdfs:subPropertyOf rdf:resource="https://www.semanticlab.net/kee/family/hasParent"/>
+        <rdfs:domain rdf:resource="https://www.semanticlab.net/kee/family/Child"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Father"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/hasMother -->
+
+    <owl:ObjectProperty rdf:about="https://www.semanticlab.net/kee/family/hasMother">
+        <rdfs:subPropertyOf rdf:resource="https://www.semanticlab.net/kee/family/hasParent"/>
+        <rdfs:domain rdf:resource="https://www.semanticlab.net/kee/family/Child"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Mother"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/hasParent -->
+
+    <owl:ObjectProperty rdf:about="https://www.semanticlab.net/kee/family/hasParent">
+        <rdfs:subPropertyOf rdf:resource="https://www.semanticlab.net/kee/family/related"/>
+        <rdfs:domain rdf:resource="https://www.semanticlab.net/kee/family/Child"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Parent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/hasSon -->
+
+    <owl:ObjectProperty rdf:about="https://www.semanticlab.net/kee/family/hasSon">
+        <rdfs:subPropertyOf rdf:resource="https://www.semanticlab.net/kee/family/hasChild"/>
+        <rdfs:domain rdf:resource="https://www.semanticlab.net/kee/family/Parent"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Child"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Male"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/related -->
+
+    <owl:ObjectProperty rdf:about="https://www.semanticlab.net/kee/family/related">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="https://www.semanticlab.net/kee/family/Relative"/>
+        <rdfs:range rdf:resource="https://www.semanticlab.net/kee/family/Relative"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Child -->
+
+    <owl:Class rdf:about="https://www.semanticlab.net/kee/family/Child">
+        <rdfs:subClassOf rdf:resource="https://www.semanticlab.net/kee/family/Relative"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Father -->
+
+    <owl:Class rdf:about="https://www.semanticlab.net/kee/family/Father">
+        <rdfs:subClassOf rdf:resource="https://www.semanticlab.net/kee/family/Male"/>
+        <rdfs:subClassOf rdf:resource="https://www.semanticlab.net/kee/family/Parent"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Female -->
+
+    <owl:Class rdf:about="https://www.semanticlab.net/kee/family/Female">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Male -->
+
+    <owl:Class rdf:about="https://www.semanticlab.net/kee/family/Male">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Mother -->
+
+    <owl:Class rdf:about="https://www.semanticlab.net/kee/family/Mother">
+        <rdfs:subClassOf rdf:resource="https://www.semanticlab.net/kee/family/Female"/>
+        <rdfs:subClassOf rdf:resource="https://www.semanticlab.net/kee/family/Parent"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Parent -->
+
+    <owl:Class rdf:about="https://www.semanticlab.net/kee/family/Parent">
+        <rdfs:subClassOf rdf:resource="https://www.semanticlab.net/kee/family/Relative"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Relative -->
+
+    <owl:Class rdf:about="https://www.semanticlab.net/kee/family/Relative">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Angelika_Kaufmann -->
+
+    <owl:NamedIndividual rdf:about="https://www.semanticlab.net/kee/family/Angelika_Kaufmann">
+        <hasFather rdf:resource="https://www.semanticlab.net/kee/family/Josef_Kaufmann"/>
+        <hasMother rdf:resource="https://www.semanticlab.net/kee/family/Maria_Kaufmann"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Josef_Kaufmann -->
+
+    <owl:NamedIndividual rdf:about="https://www.semanticlab.net/kee/family/Josef_Kaufmann"/>
+    
+
+
+    <!-- https://www.semanticlab.net/kee/family/Maria_Kaufmann -->
+
+    <owl:NamedIndividual rdf:about="https://www.semanticlab.net/kee/family/Maria_Kaufmann"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

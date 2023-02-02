@@ -11,6 +11,8 @@ with open('emerson_annotated_text.jsonl.txt') as f:
         if example['answer'] == 'accept':
             qid = example["accept"][0]
             offset = (example["spans"][0]["start"], example["spans"][0]["end"])
+            label = example["spans"][0]["label"]
+            print(label)
             links_dict = {qid: 1.0}
         dataset[qid].append((text, {"links": {offset: links_dict}}))
 
