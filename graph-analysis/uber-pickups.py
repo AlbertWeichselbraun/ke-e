@@ -7,7 +7,6 @@ st.write('# Uber Pickups in NYC')
 # load data
 data = pd.read_csv('https://weichselbraun.net/ke-e/data/uber-pickups.csv.gz')
 data['Date/Time'] = pd.to_datetime(data['Date/Time'])
-print('hallo')
 
 if st.checkbox('Show raw data'):
     st.write('## Raw data')

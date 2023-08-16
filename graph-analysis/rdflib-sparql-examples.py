@@ -2,6 +2,8 @@ from rdflib import Graph
 
 g = Graph()
 
+
+print("Example 1: Query Wikidata for countries of the European Union")
 QUERY = '''
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
@@ -18,14 +20,15 @@ WHERE {
 }
 LIMIT 50
 '''
-#for country, country_label in g.query(QUERY):
-#    print(country, country_label)
+for no, (country, country_label) in enumerate(g.query(QUERY), start=1):
+    print(no, country, country_label)
 
 
+print("\nExample 2: Query DBpedia for Swiss Cantons.")
 QUERY = '''
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX dbr: <http://dbpedia.org/resource/>
-SELECT DISTINCT ?canton_name ?canton_region_code 
+SELECT DISTINCT ?canton_name ?canton_region_code
 WHERE {
   SERVICE <https://dbpedia.org/sparql>
     {
