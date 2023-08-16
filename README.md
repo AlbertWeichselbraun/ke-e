@@ -1,6 +1,8 @@
 # Knowledge Engineering & Knowledge Extraction Example Code
 
-Running the provided examples:
+## Setup
+
+Please perform the following steps to run the provided examples.
 
 1. change into the example's directory
 2. create a virtual environment and install the dependencies
@@ -9,6 +11,8 @@ Running the provided examples:
    source venv/bin/activate          # activate the virtual environment
    pip install -r requirements.txt   # install requirements
    ```
+
+## Examples
 
 1. rdflib and graphs:
    - rdflib-sparql-examples.py: query Wikidata and DBpedia for information on countries and cantons
