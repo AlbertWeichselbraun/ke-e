@@ -1,3 +1,2 @@
 gensim 
-fasttext
-
+nltk

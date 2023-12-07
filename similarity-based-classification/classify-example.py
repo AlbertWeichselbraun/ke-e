@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from classifiers.string_based import string_classify_document
 from classifiers.embedding_based import embedding_classify_document
 
@@ -7,7 +8,9 @@ keywords = ["schokolade", "mountains", "cheese"]
 # Example documents
 documents = [
     "I love hiking in the mountains.",
+    "I love hiking in the Alps.",
     "Swiss cheese is delicious.",
+    "I like Emmentaler, Gruyère and .",
     "The beach is my favorite place to relax.",
     "I enjoy eating schokolade.",
     "Coding is my passion.",
