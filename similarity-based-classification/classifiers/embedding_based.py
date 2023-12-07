@@ -6,7 +6,8 @@ import os.path
 
 from gensim.models import KeyedVectors
 from nltk.tokenize import word_tokenize
-from pickle import dump
+from scipy import spatial
+from pickle import dump, load
 
 EMBEDDING_CACHE='embedding.pickle.gz'
 if not os.path.exists(EMBEDDING_CACHE):
@@ -31,5 +32,5 @@ def embedding_classify_document(document, keyword_list):
     else:
         return 0.
 
-    return sum([EMBEDDING.similarity(EMBEDDING[keyword], doc_vector) for keyword in keyword_list])
+    return sum([1 - spatial.distance.cosine(EMBEDDING[keyword], doc_vector) for keyword in keyword_list if keyword in EMBEDDING])
 

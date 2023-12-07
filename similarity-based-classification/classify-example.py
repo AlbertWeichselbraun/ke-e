@@ -3,16 +3,15 @@ from classifiers.string_based import string_classify_document
 from classifiers.embedding_based import embedding_classify_document
 
 # List of keywords for classification
-keywords = ["schokolade", "mountains", "cheese"]
+keywords = ["chocolate", "mountain", "cheese", "Switzerland"]
 
 # Example documents
 documents = [
     "I love hiking in the mountains.",
-    "I love hiking in the Alps.",
+    "I love climbing in the Alps.",
     "Swiss cheese is delicious.",
-    "I like Emmentaler, Gruyère and .",
-    "The beach is my favorite place to relax.",
-    "I enjoy eating schokolade.",
+    "The beach is my favorite place",
+    "I enjoy eating chocolate.",
     "Coding is my passion.",
 ]
 
