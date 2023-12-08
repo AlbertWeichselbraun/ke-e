@@ -6,7 +6,7 @@ import os.path
 
 from gensim.models import KeyedVectors
 from nltk.tokenize import word_tokenize
-from scipy import spatial
+from scipy.spatial.distance import cosine
 from pickle import dump, load
 
 EMBEDDING_CACHE='embedding.pickle.gz'
@@ -27,10 +27,9 @@ def embedding_classify_document(document, keyword_list):
 
     # compute document vector
     doc_vector = [EMBEDDING[word] for word in doc_tokens if word in EMBEDDING]
-    if len(doc_vector) > 0:
-        doc_vector = sum(doc_vector) / len(doc_vector)
-    else:
+    if not doc_vector:
         return 0.
+    doc_vector = sum(doc_vector) / len(doc_vector)
 
-    return sum([1 - spatial.distance.cosine(EMBEDDING[keyword], doc_vector) for keyword in keyword_list if keyword in EMBEDDING])
+    return sum([1 - cosine(EMBEDDING[keyword], doc_vector) for keyword in keyword_list if keyword in EMBEDDING])
 
