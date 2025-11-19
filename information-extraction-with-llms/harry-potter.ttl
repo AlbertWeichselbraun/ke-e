@@ -1,235 +1,334 @@
 @prefix : <http://weichselbraun.net/kee/2025/harry-potter#> .
 @prefix ex: <http://weichselbraun.net/kee/2025/harry-potter#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://weichselbraun.net/kee/2025/harry-potter#> .
 
 <http://www.weichselbraun.net/kee/2025/harry-potter/ontology.ttl> rdf:type owl:Ontology .
 
-################################################################
-# Classes
-################################################################
-ex:Character a owl:Class ;
-    rdfs:label "Character" ;
-    rdfs:comment "A person/being in the wizarding world." .
+#################################################################
+#    Annotation properties
+#################################################################
 
-ex:House a owl:Class ;
-    rdfs:label "House" ;
-    rdfs:comment "A Hogwarts house (Gryffindor, Slytherin, Hufflepuff, Ravenclaw) or similar house at another school." .
-
-ex:WizardingSchool a owl:Class ;
-    rdfs:label "WizardingSchool" ;
-    rdfs:comment "A magical school (e.g., Hogwarts)." .
-
-ex:Organization a owl:Class ;
-    rdfs:label "Organization" ;
-    rdfs:comment "An organization such as Ministry of Magic, Order of the Phoenix, Death Eaters." .
-
-ex:Location a owl:Class ;
-    rdfs:label "Location" ;
-    rdfs:comment "Geographic/place entities (e.g., Hogsmeade, Godric's Hollow)." .
-
-ex:MagicAbility a owl:Class ;
-    rdfs:label "MagicAbility" ;
-    rdfs:comment "An ability or skill (e.g., Parseltongue, Occlumency, Apparition)." .
-
-ex:Artifact a owl:Class ;
-    rdfs:label "Artifact" ;
-    rdfs:comment "Magical objects (wands, horcruxes, the Elder Wand)." .
-
-ex:Event a owl:Class ;
-    rdfs:label "Event" ;
-    rdfs:comment "Events such as battles, tournaments, or meetings." .
-
-################################################################
-# Object properties
-################################################################
-# character -> house
-ex:memberOfHouse a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:House ;
-    rdfs:label "memberOfHouse" ;
-    rdfs:comment "Indicates a character's house affiliation." .
-
-# character -> school (attended)
-ex:attendedSchool a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:WizardingSchool ;
-    rdfs:label "attendedSchool" ;
-    rdfs:comment "School the character attended." .
-
-# character -> ability
-ex:hasAbility a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:MagicAbility ;
-    rdfs:label "hasAbility" ;
-    rdfs:comment "Magic abilities or skills possessed." .
-
-# character -> artifact (wields / owns)
-ex:wields a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:Artifact ;
-    rdfs:label "wields" ;
-    rdfs:comment "Indicates the character uses or owns an artifact (e.g., a wand)." .
-
-# character -> location (birthplace)
-ex:bornIn a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:Location ;
-    rdfs:label "bornIn" ;
-    rdfs:comment "Place of birth or origin." .
-
-# character <-> character (allies)
-ex:allyOf a owl:SymmetricProperty , owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:Character ;
-    rdfs:label "allyOf" ;
-    rdfs:comment "Mutual allies." .
-
-# character <-> character (enemies); declared inverse of allyOf is not appropriate here; keep separate
-ex:enemyOf a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:Character ;
-    rdfs:label "enemyOf" ;
-    rdfs:comment "Antagonistic relationship between characters." .
-
-# character -> event (participation)
-ex:participatedIn a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:Event ;
-    rdfs:label "participatedIn" ;
-    rdfs:comment "Character participation in events (battles, tournaments)." .
-
-# character -> organization (works/affiliated)
-ex:worksAt a owl:ObjectProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range ex:Organization ;
-    rdfs:label "worksAt" ;
-    rdfs:comment "Employment or formal affiliation with an organization." .
-
-# artifact -> event (usedIn)
-ex:usedIn a owl:ObjectProperty ;
-    rdfs:domain ex:Artifact ;
-    rdfs:range ex:Event ;
-    rdfs:label "usedIn" ;
-    rdfs:comment "Artifact used in a specific event." .
-
-################################################################
-# Data properties
-################################################################
-ex:birthDate a owl:DatatypeProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range xsd:date ;
-    rdfs:label "birthDate" ;
-    rdfs:comment "Birth date of the character (if known)." .
-
-ex:gender a owl:DatatypeProperty ;
-    rdfs:domain ex:Character ;
-    rdfs:range xsd:string ;
-    rdfs:label "gender" .
+###  http://weichselbraun.net/kee/2025/harry-potter#description
+ex:description rdf:type owl:AnnotationProperty .
 
 
-################################################################
-# Inverse / characteristic declarations (examples)
-################################################################
-# Example: attendedSchool inverse could be hasStudent (optional)
-ex:hasStudent a owl:ObjectProperty ;
-    rdfs:domain ex:WizardingSchool ;
-    rdfs:range ex:Character ;
-    owl:inverseOf ex:attendedSchool ;
-    rdfs:label "hasStudent" ;
-    rdfs:comment "Inverse of attendedSchool." .
+#################################################################
+#    Datatypes
+#################################################################
 
-################################################################
-# Example individuals (seed data)
-################################################################
-# Schools & Houses
-ex:Hogwarts a ex:WizardingSchool ;
-    rdfs:label "Hogwarts School of Witchcraft and Wizardry" .
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
 
-ex:Gryffindor a ex:House ;
-    rdfs:label "Gryffindor" .
 
-ex:Slytherin a ex:House ;
-    rdfs:label "Slytherin" .
+#################################################################
+#    Object Properties
+#################################################################
 
-# Organizations
-ex:Ministry_of_Magic a ex:Organization ;
-    rdfs:label "Ministry of Magic" .
+###  http://weichselbraun.net/kee/2025/harry-potter#allyOf
+ex:allyOf rdf:type owl:ObjectProperty ,
+                   owl:SymmetricProperty ;
+          rdfs:domain ex:Character ;
+          rdfs:range ex:Character ;
+          rdfs:comment "Mutual allies." ;
+          rdfs:label "allyOf" .
 
-ex:Order_of_the_Phoenix a ex:Organization ;
-    rdfs:label "Order of the Phoenix" .
 
-# Locations
-ex:Godrics_Hollow a ex:Location ;
-    rdfs:label "Godric's Hollow" .
+###  http://weichselbraun.net/kee/2025/harry-potter#attendedSchool
+ex:attendedSchool rdf:type owl:ObjectProperty ;
+                  owl:inverseOf ex:hasStudent ;
+                  rdfs:domain ex:Character ;
+                  rdfs:range ex:WizardingSchool ;
+                  rdfs:comment "School the character attended." ;
+                  rdfs:label "attendedSchool" .
 
-ex:Hogsmeade a ex:Location ;
-    rdfs:label "Hogsmeade" .
 
-# Magic abilities
-ex:Parseltongue a ex:MagicAbility ;
-    rdfs:label "Parseltongue" .
+###  http://weichselbraun.net/kee/2025/harry-potter#bornIn
+ex:bornIn rdf:type owl:ObjectProperty ;
+          rdfs:domain ex:Character ;
+          rdfs:range ex:Location ;
+          rdfs:comment "Place of birth or origin." ;
+          rdfs:label "bornIn" .
 
-ex:Occlumency a ex:MagicAbility ;
-    rdfs:label "Occlumency" .
 
-# Artifacts
-ex:Elder_Wand a ex:Artifact ;
-    rdfs:label "Elder Wand" ;
-    rdfs:comment "One of the Deathly Hallows." .
+###  http://weichselbraun.net/kee/2025/harry-potter#enemyOf
+ex:enemyOf rdf:type owl:ObjectProperty ;
+           rdfs:domain ex:Character ;
+           rdfs:range ex:Character ;
+           rdfs:comment "Antagonistic relationship between characters." ;
+           rdfs:label "enemyOf" .
 
-ex:Wand_of_Harry a ex:Artifact ;
-    rdfs:label "Harry's Wand" .
 
-# Events
-ex:Battle_of_Hogwarts a ex:Event ;
-    rdfs:label "Battle of Hogwarts" .
+###  http://weichselbraun.net/kee/2025/harry-potter#hasAbility
+ex:hasAbility rdf:type owl:ObjectProperty ;
+              rdfs:domain ex:Character ;
+              rdfs:range ex:MagicAbility ;
+              rdfs:comment "Magic abilities or skills possessed." ;
+              rdfs:label "hasAbility" .
 
-################################################################
-# Characters (some seeded individuals)
-################################################################
-ex:Harry_Potter a ex:Character ;
-    rdfs:label "Harry Potter" ;
-    ex:memberOfHouse ex:Gryffindor ;
-    ex:attendedSchool ex:Hogwarts ;
-    ex:bornIn ex:Godrics_Hollow ;
-    ex:hasAbility ex:Occlumency ;
-    ex:wields ex:Wand_of_Harry ;
-    ex:worksAt ex:Order_of_the_Phoenix ;
-    ex:participatedIn ex:Battle_of_Hogwarts ;
-    ex:description "The protagonist; the Boy Who Lived." .
 
-ex:Hermione_Granger a ex:Character ;
-    rdfs:label "Hermione Granger" ;
-    ex:memberOfHouse ex:Gryffindor ;
-    ex:attendedSchool ex:Hogwarts ;
-    ex:hasAbility ex:Occlumency ;
-    ex:participatedIn ex:Battle_of_Hogwarts ;
-    ex:allyOf ex:Harry_Potter ;
-    ex:allyOf ex:Ron_Weasley ;
-    ex:description "Muggle-born witch; exceptional academic ability." .
+###  http://weichselbraun.net/kee/2025/harry-potter#hasStudent
+ex:hasStudent rdf:type owl:ObjectProperty ;
+              rdfs:domain ex:WizardingSchool ;
+              rdfs:range ex:Character ;
+              rdfs:comment "Inverse of attendedSchool." ;
+              rdfs:label "hasStudent" .
 
-ex:Ron_Weasley a ex:Character ;
-    rdfs:label "Ron Weasley" ;
-    ex:memberOfHouse ex:Gryffindor ;
-    ex:attendedSchool ex:Hogwarts ;
-    ex:allyOf ex:Harry_Potter ;
-    ex:allyOf ex:Hermione_Granger ;
-    ex:participatedIn ex:Battle_of_Hogwarts .
 
-ex:Albus_Dumbledore a ex:Character ;
-    rdfs:label "Albus Dumbledore" ;
-    ex:attendedSchool ex:Hogwarts ;
-    ex:worksAt ex:Order_of_the_Phoenix ;
-    ex:wields ex:Elder_Wand ;
-    ex:description "Headmaster of Hogwarts (for most of the series)." .
+###  http://weichselbraun.net/kee/2025/harry-potter#memberOfHouse
+ex:memberOfHouse rdf:type owl:ObjectProperty ;
+                 rdfs:domain ex:Character ;
+                 rdfs:range ex:House ;
+                 rdfs:comment "Indicates a character's house affiliation." ;
+                 rdfs:label "memberOfHouse" .
 
-ex:Tom_Riddle a ex:Character ;
-    rdfs:label "Tom Riddle" ;
-    ex:hasAbility ex:Parseltongue ;
-    ex:enemyOf ex:Harry_Potter ;
-    ex:participatedIn ex:Battle_of_Hogwarts ;
-    ex:description "Lord Voldemort (Tom Riddle)." .
 
+###  http://weichselbraun.net/kee/2025/harry-potter#participatedIn
+ex:participatedIn rdf:type owl:ObjectProperty ;
+                  rdfs:domain ex:Character ;
+                  rdfs:range ex:Event ;
+                  rdfs:comment "Character participation in events (battles, tournaments)." ;
+                  rdfs:label "participatedIn" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#usedIn
+ex:usedIn rdf:type owl:ObjectProperty ;
+          rdfs:domain ex:Artifact ;
+          rdfs:range ex:Event ;
+          rdfs:comment "Artifact used in a specific event." ;
+          rdfs:label "usedIn" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#wields
+ex:wields rdf:type owl:ObjectProperty ;
+          rdfs:domain ex:Character ;
+          rdfs:range ex:Artifact ;
+          rdfs:comment "Indicates the character uses or owns an artifact (e.g., a wand)." ;
+          rdfs:label "wields" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#worksAt
+ex:worksAt rdf:type owl:ObjectProperty ;
+           rdfs:domain ex:Character ;
+           rdfs:range ex:Organization ;
+           rdfs:comment "Employment or formal affiliation with an organization." ;
+           rdfs:label "worksAt" .
+
+
+###  http://www.weichselbraun.net/kee/2025/harry-potter/ontology.ttl#relatedTo
+:relatedTo rdf:type owl:ObjectProperty ;
+           rdfs:domain ex:Character ;
+           rdfs:range ex:Character .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://weichselbraun.net/kee/2025/harry-potter#birthDate
+ex:birthDate rdf:type owl:DatatypeProperty ;
+             rdfs:domain ex:Character ;
+             rdfs:range xsd:date ;
+             rdfs:comment "Birth date of the character (if known)." ;
+             rdfs:label "birthDate" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#gender
+ex:gender rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:Character ;
+          rdfs:range xsd:string ;
+          rdfs:label "gender" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Artifact
+ex:Artifact rdf:type owl:Class ;
+            rdfs:comment "Magical objects (wands, horcruxes, the Elder Wand)." ;
+            rdfs:label "Artifact" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Character
+ex:Character rdf:type owl:Class ;
+             rdfs:comment "A person/being in the wizarding world." ;
+             rdfs:label "Character" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Event
+ex:Event rdf:type owl:Class ;
+         rdfs:comment "Events such as battles, tournaments, or meetings." ;
+         rdfs:label "Event" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#House
+ex:House rdf:type owl:Class ;
+         rdfs:comment "A Hogwarts house (Gryffindor, Slytherin, Hufflepuff, Ravenclaw) or similar house at another school." ;
+         rdfs:label "House" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Location
+ex:Location rdf:type owl:Class ;
+            rdfs:comment "Geographic/place entities (e.g., Hogsmeade, Godric's Hollow)." ;
+            rdfs:label "Location" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#MagicAbility
+ex:MagicAbility rdf:type owl:Class ;
+                rdfs:comment "An ability or skill (e.g., Parseltongue, Occlumency, Apparition)." ;
+                rdfs:label "MagicAbility" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Organization
+ex:Organization rdf:type owl:Class ;
+                rdfs:comment "An organization such as Ministry of Magic, Order of the Phoenix, Death Eaters." ;
+                rdfs:label "Organization" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#WizardingSchool
+ex:WizardingSchool rdf:type owl:Class ;
+                   rdfs:comment "A magical school (e.g., Hogwarts)." ;
+                   rdfs:label "WizardingSchool" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Albus_Dumbledore
+ex:Albus_Dumbledore rdf:type owl:NamedIndividual ,
+                             ex:Character ;
+                    ex:attendedSchool ex:Hogwarts ;
+                    ex:wields ex:Elder_Wand ;
+                    ex:worksAt ex:Order_of_the_Phoenix ;
+                    ex:description "Headmaster of Hogwarts (for most of the series)." ;
+                    rdfs:label "Albus Dumbledore" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Battle_of_Hogwarts
+ex:Battle_of_Hogwarts rdf:type owl:NamedIndividual ,
+                               ex:Event ;
+                      rdfs:label "Battle of Hogwarts" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Elder_Wand
+ex:Elder_Wand rdf:type owl:NamedIndividual ,
+                       ex:Artifact ;
+              rdfs:comment "One of the Deathly Hallows." ;
+              rdfs:label "Elder Wand" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Godrics_Hollow
+ex:Godrics_Hollow rdf:type owl:NamedIndividual ,
+                           ex:Location ;
+                  rdfs:label "Godric's Hollow" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Gryffindor
+ex:Gryffindor rdf:type owl:NamedIndividual ,
+                       ex:House ;
+              rdfs:label "Gryffindor" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Harry_Potter
+ex:Harry_Potter rdf:type owl:NamedIndividual ,
+                         ex:Character ;
+                ex:attendedSchool ex:Hogwarts ;
+                ex:bornIn ex:Godrics_Hollow ;
+                ex:hasAbility ex:Occlumency ;
+                ex:memberOfHouse ex:Gryffindor ;
+                ex:participatedIn ex:Battle_of_Hogwarts ;
+                ex:wields ex:Wand_of_Harry ;
+                ex:worksAt ex:Order_of_the_Phoenix ;
+                ex:description "The protagonist; the Boy Who Lived." ;
+                rdfs:label "Harry Potter" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Hermione_Granger
+ex:Hermione_Granger rdf:type owl:NamedIndividual ,
+                             ex:Character ;
+                    ex:allyOf ex:Harry_Potter ,
+                              ex:Ron_Weasley ;
+                    ex:attendedSchool ex:Hogwarts ;
+                    ex:hasAbility ex:Occlumency ;
+                    ex:memberOfHouse ex:Gryffindor ;
+                    ex:participatedIn ex:Battle_of_Hogwarts ;
+                    ex:description "Muggle-born witch; exceptional academic ability." ;
+                    rdfs:label "Hermione Granger" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Hogsmeade
+ex:Hogsmeade rdf:type owl:NamedIndividual ,
+                      ex:Location ;
+             rdfs:label "Hogsmeade" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Hogwarts
+ex:Hogwarts rdf:type owl:NamedIndividual ,
+                     ex:WizardingSchool ;
+            rdfs:label "Hogwarts School of Witchcraft and Wizardry" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Ministry_of_Magic
+ex:Ministry_of_Magic rdf:type owl:NamedIndividual ,
+                              ex:Organization ;
+                     rdfs:label "Ministry of Magic" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Occlumency
+ex:Occlumency rdf:type owl:NamedIndividual ,
+                       ex:MagicAbility ;
+              rdfs:label "Occlumency" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Order_of_the_Phoenix
+ex:Order_of_the_Phoenix rdf:type owl:NamedIndividual ,
+                                 ex:Organization ;
+                        rdfs:label "Order of the Phoenix" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Parseltongue
+ex:Parseltongue rdf:type owl:NamedIndividual ,
+                         ex:MagicAbility ;
+                rdfs:label "Parseltongue" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Ron_Weasley
+ex:Ron_Weasley rdf:type owl:NamedIndividual ,
+                        ex:Character ;
+               ex:allyOf ex:Harry_Potter ,
+                         ex:Hermione_Granger ;
+               ex:attendedSchool ex:Hogwarts ;
+               ex:memberOfHouse ex:Gryffindor ;
+               ex:participatedIn ex:Battle_of_Hogwarts ;
+               rdfs:label "Ron Weasley" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Slytherin
+ex:Slytherin rdf:type owl:NamedIndividual ,
+                      ex:House ;
+             rdfs:label "Slytherin" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Tom_Riddle
+ex:Tom_Riddle rdf:type owl:NamedIndividual ,
+                       ex:Character ;
+              ex:enemyOf ex:Harry_Potter ;
+              ex:hasAbility ex:Parseltongue ;
+              ex:participatedIn ex:Battle_of_Hogwarts ;
+              ex:description "Lord Voldemort (Tom Riddle)." ;
+              rdfs:label "Tom Riddle" .
+
+
+###  http://weichselbraun.net/kee/2025/harry-potter#Wand_of_Harry
+ex:Wand_of_Harry rdf:type owl:NamedIndividual ,
+                          ex:Artifact ;
+                 rdfs:label "Harry's Wand" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
