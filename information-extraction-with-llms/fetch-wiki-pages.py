@@ -16,8 +16,6 @@ def get_characters(ontology_file):
     g = rdflib.Graph()
     g.parse(ontology_file, format="turtle")
 
-    ex = rdflib.Namespace("http://weichselbraun.net/kee/2025/harry-potter#")
-
     # Query for all instances of Character class
     query = """
     PREFIX ex: <http://weichselbraun.net/kee/2025/harry-potter#>
