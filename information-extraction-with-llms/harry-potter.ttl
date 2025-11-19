@@ -120,7 +120,9 @@ ex:worksAt rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.weichselbraun.net/kee/2025/harry-potter/ontology.ttl#relatedTo
-:relatedTo rdf:type owl:ObjectProperty ;
+:relatedTo rdf:type owl:ObjectProperty ,
+                    owl:SymmetricProperty ,
+                    owl:TransitiveProperty ;
            rdfs:domain ex:Character ;
            rdfs:range ex:Character .
 
