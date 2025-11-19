@@ -1,0 +1,108 @@
+{
+  "family_members": [
+    {
+      "name": "Arthur Weasley",
+      "relationship": "Father"
+    },
+    {
+      "name": "Molly Weasley (n\u00e9e Prewett)",
+      "relationship": "Mother"
+    },
+    {
+      "name": "William Weasley",
+      "relationship": "Older Brother"
+    },
+    {
+      "name": "Charles Weasley",
+      "relationship": "Older Brother"
+    },
+    {
+      "name": "Percy Weasley",
+      "relationship": "Older Brother"
+    },
+    {
+      "name": "Fred Weasley",
+      "relationship": "Older Brother"
+    },
+    {
+      "name": "George Weasley",
+      "relationship": "Older Brother"
+    },
+    {
+      "name": "Ginevra Potter (n\u00e9e Weasley)",
+      "relationship": "Younger Sister"
+    },
+    {
+      "name": "Hermione Granger",
+      "relationship": "Wife"
+    },
+    {
+      "name": "Rose Granger-Weasley",
+      "relationship": "Daughter"
+    },
+    {
+      "name": "Hugo Granger-Weasley",
+      "relationship": "Son"
+    },
+    {
+      "name": "Fleur Weasley (n\u00e9e Delacour)",
+      "relationship": "Sister-in-law"
+    },
+    {
+      "name": "Audrey Weasley",
+      "relationship": "Sister-in-law"
+    },
+    {
+      "name": "Angelina Weasley (n\u00e9e Johnson)",
+      "relationship": "Sister-in-law"
+    },
+    {
+      "name": "Harry Potter",
+      "relationship": "Brother-in-law"
+    },
+    {
+      "name": "Victoire Weasley",
+      "relationship": "Niece"
+    },
+    {
+      "name": "Dominique Weasley",
+      "relationship": "Niece"
+    },
+    {
+      "name": "Louis Weasley",
+      "relationship": "Nephew"
+    },
+    {
+      "name": "Molly Weasley (II)",
+      "relationship": "Niece"
+    },
+    {
+      "name": "Lucy Weasley",
+      "relationship": "Niece"
+    },
+    {
+      "name": "Fred Weasley (II)",
+      "relationship": "Nephew"
+    },
+    {
+      "name": "Roxanne Weasley",
+      "relationship": "Niece"
+    },
+    {
+      "name": "James Potter (II)",
+      "relationship": "Nephew"
+    },
+    {
+      "name": "Albus Potter",
+      "relationship": "Nephew"
+    },
+    {
+      "name": "Lily Potter (II)",
+      "relationship": "Niece"
+    },
+    {
+      "name": "Gideon Prewett",
+      "relationship": "Maternal Uncle"
+    }
+  ]
+}

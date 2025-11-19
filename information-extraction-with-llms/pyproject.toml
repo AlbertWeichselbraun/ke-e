@@ -1,0 +1,11 @@
+[project]
+name = "information-extraction-with-llms"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "groq>=0.35.0",
+    "inscriptis>=2.7.0",
+    "rdflib>=7.4.0",
+]

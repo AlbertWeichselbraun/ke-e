@@ -1,0 +1,40 @@
+{
+  "family_members": [
+    {
+      "name": "Tom Riddle Senior",
+      "relationship": "Father"
+    },
+    {
+      "name": "Merope Riddle (n\u00e9e Gaunt)",
+      "relationship": "Mother"
+    },
+    {
+      "name": "Delphini",
+      "relationship": "Daughter"
+    },
+    {
+      "name": "Morfin Gaunt",
+      "relationship": "Maternal Uncle"
+    },
+    {
+      "name": "Thomas Riddle",
+      "relationship": "Paternal Grandfather"
+    },
+    {
+      "name": "Mary Riddle",
+      "relationship": "Paternal Grandmother"
+    },
+    {
+      "name": "Marvolo Gaunt",
+      "relationship": "Maternal Grandfather"
+    },
+    {
+      "name": "Salazar Slytherin",
+      "relationship": "Maternal Ancestor"
+    },
+    {
+      "name": "Cadmus Peverell",
+      "relationship": "Maternal Ancestor"
+    }
+  ]
+}

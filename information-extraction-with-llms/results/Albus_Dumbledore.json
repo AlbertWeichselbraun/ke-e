@@ -1,0 +1,28 @@
+{
+  "family_members": [
+    {
+      "name": "Percival Dumbledore",
+      "relationship": "Father"
+    },
+    {
+      "name": "Kendra Dumbledore",
+      "relationship": "Mother"
+    },
+    {
+      "name": "Aberforth Dumbledore",
+      "relationship": "Younger Brother"
+    },
+    {
+      "name": "Ariana Dumbledore",
+      "relationship": "Younger Sister"
+    },
+    {
+      "name": "Aurelius Dumbledore",
+      "relationship": "Biological Nephew"
+    },
+    {
+      "name": "Honoria",
+      "relationship": "Aunt"
+    }
+  ]
+}

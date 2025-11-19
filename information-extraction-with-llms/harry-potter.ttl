@@ -1,0 +1,235 @@
+@prefix : <http://weichselbraun.net/kee/2025/harry-potter#> .
+@prefix ex: <http://weichselbraun.net/kee/2025/harry-potter#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.weichselbraun.net/kee/2025/harry-potter/ontology.ttl> rdf:type owl:Ontology .
+
+################################################################
+# Classes
+################################################################
+ex:Character a owl:Class ;
+    rdfs:label "Character" ;
+    rdfs:comment "A person/being in the wizarding world." .
+
+ex:House a owl:Class ;
+    rdfs:label "House" ;
+    rdfs:comment "A Hogwarts house (Gryffindor, Slytherin, Hufflepuff, Ravenclaw) or similar house at another school." .
+
+ex:WizardingSchool a owl:Class ;
+    rdfs:label "WizardingSchool" ;
+    rdfs:comment "A magical school (e.g., Hogwarts)." .
+
+ex:Organization a owl:Class ;
+    rdfs:label "Organization" ;
+    rdfs:comment "An organization such as Ministry of Magic, Order of the Phoenix, Death Eaters." .
+
+ex:Location a owl:Class ;
+    rdfs:label "Location" ;
+    rdfs:comment "Geographic/place entities (e.g., Hogsmeade, Godric's Hollow)." .
+
+ex:MagicAbility a owl:Class ;
+    rdfs:label "MagicAbility" ;
+    rdfs:comment "An ability or skill (e.g., Parseltongue, Occlumency, Apparition)." .
+
+ex:Artifact a owl:Class ;
+    rdfs:label "Artifact" ;
+    rdfs:comment "Magical objects (wands, horcruxes, the Elder Wand)." .
+
+ex:Event a owl:Class ;
+    rdfs:label "Event" ;
+    rdfs:comment "Events such as battles, tournaments, or meetings." .
+
+################################################################
+# Object properties
+################################################################
+# character -> house
+ex:memberOfHouse a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:House ;
+    rdfs:label "memberOfHouse" ;
+    rdfs:comment "Indicates a character's house affiliation." .
+
+# character -> school (attended)
+ex:attendedSchool a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:WizardingSchool ;
+    rdfs:label "attendedSchool" ;
+    rdfs:comment "School the character attended." .
+
+# character -> ability
+ex:hasAbility a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:MagicAbility ;
+    rdfs:label "hasAbility" ;
+    rdfs:comment "Magic abilities or skills possessed." .
+
+# character -> artifact (wields / owns)
+ex:wields a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:Artifact ;
+    rdfs:label "wields" ;
+    rdfs:comment "Indicates the character uses or owns an artifact (e.g., a wand)." .
+
+# character -> location (birthplace)
+ex:bornIn a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:Location ;
+    rdfs:label "bornIn" ;
+    rdfs:comment "Place of birth or origin." .
+
+# character <-> character (allies)
+ex:allyOf a owl:SymmetricProperty , owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:Character ;
+    rdfs:label "allyOf" ;
+    rdfs:comment "Mutual allies." .
+
+# character <-> character (enemies); declared inverse of allyOf is not appropriate here; keep separate
+ex:enemyOf a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:Character ;
+    rdfs:label "enemyOf" ;
+    rdfs:comment "Antagonistic relationship between characters." .
+
+# character -> event (participation)
+ex:participatedIn a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:Event ;
+    rdfs:label "participatedIn" ;
+    rdfs:comment "Character participation in events (battles, tournaments)." .
+
+# character -> organization (works/affiliated)
+ex:worksAt a owl:ObjectProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range ex:Organization ;
+    rdfs:label "worksAt" ;
+    rdfs:comment "Employment or formal affiliation with an organization." .
+
+# artifact -> event (usedIn)
+ex:usedIn a owl:ObjectProperty ;
+    rdfs:domain ex:Artifact ;
+    rdfs:range ex:Event ;
+    rdfs:label "usedIn" ;
+    rdfs:comment "Artifact used in a specific event." .
+
+################################################################
+# Data properties
+################################################################
+ex:birthDate a owl:DatatypeProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range xsd:date ;
+    rdfs:label "birthDate" ;
+    rdfs:comment "Birth date of the character (if known)." .
+
+ex:gender a owl:DatatypeProperty ;
+    rdfs:domain ex:Character ;
+    rdfs:range xsd:string ;
+    rdfs:label "gender" .
+
+
+################################################################
+# Inverse / characteristic declarations (examples)
+################################################################
+# Example: attendedSchool inverse could be hasStudent (optional)
+ex:hasStudent a owl:ObjectProperty ;
+    rdfs:domain ex:WizardingSchool ;
+    rdfs:range ex:Character ;
+    owl:inverseOf ex:attendedSchool ;
+    rdfs:label "hasStudent" ;
+    rdfs:comment "Inverse of attendedSchool." .
+
+################################################################
+# Example individuals (seed data)
+################################################################
+# Schools & Houses
+ex:Hogwarts a ex:WizardingSchool ;
+    rdfs:label "Hogwarts School of Witchcraft and Wizardry" .
+
+ex:Gryffindor a ex:House ;
+    rdfs:label "Gryffindor" .
+
+ex:Slytherin a ex:House ;
+    rdfs:label "Slytherin" .
+
+# Organizations
+ex:Ministry_of_Magic a ex:Organization ;
+    rdfs:label "Ministry of Magic" .
+
+ex:Order_of_the_Phoenix a ex:Organization ;
+    rdfs:label "Order of the Phoenix" .
+
+# Locations
+ex:Godrics_Hollow a ex:Location ;
+    rdfs:label "Godric's Hollow" .
+
+ex:Hogsmeade a ex:Location ;
+    rdfs:label "Hogsmeade" .
+
+# Magic abilities
+ex:Parseltongue a ex:MagicAbility ;
+    rdfs:label "Parseltongue" .
+
+ex:Occlumency a ex:MagicAbility ;
+    rdfs:label "Occlumency" .
+
+# Artifacts
+ex:Elder_Wand a ex:Artifact ;
+    rdfs:label "Elder Wand" ;
+    rdfs:comment "One of the Deathly Hallows." .
+
+ex:Wand_of_Harry a ex:Artifact ;
+    rdfs:label "Harry's Wand" .
+
+# Events
+ex:Battle_of_Hogwarts a ex:Event ;
+    rdfs:label "Battle of Hogwarts" .
+
+################################################################
+# Characters (some seeded individuals)
+################################################################
+ex:Harry_Potter a ex:Character ;
+    rdfs:label "Harry Potter" ;
+    ex:memberOfHouse ex:Gryffindor ;
+    ex:attendedSchool ex:Hogwarts ;
+    ex:bornIn ex:Godrics_Hollow ;
+    ex:hasAbility ex:Occlumency ;
+    ex:wields ex:Wand_of_Harry ;
+    ex:worksAt ex:Order_of_the_Phoenix ;
+    ex:participatedIn ex:Battle_of_Hogwarts ;
+    ex:description "The protagonist; the Boy Who Lived." .
+
+ex:Hermione_Granger a ex:Character ;
+    rdfs:label "Hermione Granger" ;
+    ex:memberOfHouse ex:Gryffindor ;
+    ex:attendedSchool ex:Hogwarts ;
+    ex:hasAbility ex:Occlumency ;
+    ex:participatedIn ex:Battle_of_Hogwarts ;
+    ex:allyOf ex:Harry_Potter ;
+    ex:allyOf ex:Ron_Weasley ;
+    ex:description "Muggle-born witch; exceptional academic ability." .
+
+ex:Ron_Weasley a ex:Character ;
+    rdfs:label "Ron Weasley" ;
+    ex:memberOfHouse ex:Gryffindor ;
+    ex:attendedSchool ex:Hogwarts ;
+    ex:allyOf ex:Harry_Potter ;
+    ex:allyOf ex:Hermione_Granger ;
+    ex:participatedIn ex:Battle_of_Hogwarts .
+
+ex:Albus_Dumbledore a ex:Character ;
+    rdfs:label "Albus Dumbledore" ;
+    ex:attendedSchool ex:Hogwarts ;
+    ex:worksAt ex:Order_of_the_Phoenix ;
+    ex:wields ex:Elder_Wand ;
+    ex:description "Headmaster of Hogwarts (for most of the series)." .
+
+ex:Tom_Riddle a ex:Character ;
+    rdfs:label "Tom Riddle" ;
+    ex:hasAbility ex:Parseltongue ;
+    ex:enemyOf ex:Harry_Potter ;
+    ex:participatedIn ex:Battle_of_Hogwarts ;
+    ex:description "Lord Voldemort (Tom Riddle)." .
+
