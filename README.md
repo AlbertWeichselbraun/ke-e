@@ -26,3 +26,4 @@ Please perform the following steps to run the provided examples.
    - named entity linking with spacy (requires running `python -m spacy download en_core_web_lg` after setting up the virtual environment)
      - spacy-named-entity-linker.py: spacy named entity linking with background knowledge
      - spacy-training.py: trains the spacy model based on the provided gold standard corpus
+4. laya-decision-model: Decison models (in this case laya) for classification and routing.
